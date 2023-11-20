@@ -22,7 +22,7 @@ public class clienteService implements CRUD<clienteModel> {
 				cliente.setName(rs.getString("name"));
 				cliente.setAddress(rs.getString("address"));
 				cliente.setPhone(rs.getString("phone"));
-				cliente.setStatus(rs.getString("statsus"));
+				cliente.setStatus(rs.getString("status"));
 				getAll.add(cliente);
 			}
 			rs.close();
