@@ -27,7 +27,7 @@
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
 				<h1 class="m-0 font-weight-bold text-primary"
-					style="text-align: center;">Lista de Clientes</h1>
+					style="text-align: center;">Lista de Clientes Inactivos</h1>
 
 				<!--  Seleccinar listado -->
 
@@ -61,7 +61,7 @@
 								<th>Nombre</th>
 								<th>Direccion</th>
 								<th>Celular</th>
-<!-- 								<th>Acciones</th> -->
+								<th>Acciones</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -74,25 +74,20 @@
 						</tfoot>
 
 						<tbody>
-							<c:forEach var="cliente" items="${listarTodos}">
+							<c:forEach var="activo" items="${Inactivos}">
 
 								<tr>
-									<td><c:out value="${cliente.id}" /></td>
-									<td><c:out value="${cliente.name}" /></td>
-									<td><c:out value="${cliente.address}" /></td>
-									<td><c:out value="${cliente.phone}" /></td>
-<!-- 									<td class="d-flex justify-content-center"> -->
+									<td><c:out value="${activo.id}" /></td>
+									<td><c:out value="${activo.name}" /></td>
+									<td><c:out value="${activo.address}" /></td>
+									<td><c:out value="${activo.phone}" /></td>
+									<td class="d-flex justify-content-center">
 
-<!-- 										<form name="eliminar" action="Eliminar" method="post"> -->
-<!-- 											<button type="submit" class="btn btn-primary">Eliminar</button> -->
-<%-- 											<input type="hidden" name="id_delete" value="${cliente.id}"> --%>
-<!-- 										</form> -->
-<!-- 										<form action="mostrarEditar" method="get"> -->
-<!-- 											<button type="submit" class="btn btn-primary">Editar</button> -->
-<%-- 											<input type="hidden" name="id_editar" value="${cliente.id}"> --%>
-<!-- 										</form> -->
-
-<!-- 									</td> -->
+										<form name="restaurar" action="Restaurar" method="post">
+											<button type="submit" class="btn btn-primary">Restaurar</button>
+											<input type="hidden" name="id_delete" value="${activo.id}">
+										</form>
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>

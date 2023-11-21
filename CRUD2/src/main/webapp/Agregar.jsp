@@ -8,6 +8,9 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+
+
+    
 </head>
 <body>
 	<div class="container">
@@ -15,11 +18,11 @@
 		<form action="Agregar" method="post">
 
 			<div class="mb-3">
-				<label class="form-label">Nombre</label> <input type="text"
-					name="name" class="form-control">
+				<label class="form-label">Nombre</label> 
+				<input type="text" name="name" class="form-control" placeholder="Pepito Perez Cavero"
+				pattern="[A-Za-z]+" title="Solo letras permitidas" required>	
 			</div>
-
-
+			
 			<div class="mb-3">
 				<label class="form-label">Direccion</label> <input type="text"
 					name="address" class="form-control">
@@ -27,8 +30,10 @@
 
 
 			<div class="mb-3">
-				<label class="form-label">Celular</label> <input type="text"
-					name="phone" class="form-control">
+				<label class="form-label">Celular</label> <input type="text" placeholder="933655658"
+					name="phone" class="form-control"
+					
+					pattern="9[0-9]{8}" title="Solo se permite 9 numeros" required>
 			</div>
 
 			<button type="submit" class="btn btn-primary">Aceptar</button>
@@ -37,5 +42,8 @@
 			</button>
 		</form>
 	</div>
+	
+	
+	
 </body>
 </html>

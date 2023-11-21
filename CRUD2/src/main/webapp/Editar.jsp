@@ -13,13 +13,11 @@
 	<div class="container">
 		<h1>Datos de Usuario</h1>
 
-
 		<form action="Editar" method="post">
 			<div class="mb-3">
 				<label class="form-label">Nombre</label> <input type="text"
 					name="name" class="form-control"
 					value="<c:out value="${editar.name}" />">
-
 			</div>
 
 			<div class="mb-3">
@@ -27,7 +25,6 @@
 					name="address" class="form-control"
 					value="<c:out value="${editar.address}" />">
 			</div>
-
 
 			<div class="mb-3">
 				<label class="form-label">Celular</label> <input type="text"

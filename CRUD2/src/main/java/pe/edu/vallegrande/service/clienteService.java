@@ -35,13 +35,13 @@ public class clienteService  {
 
 	public List<clienteModel> getActive() {
 		List<clienteModel> getActive = new ArrayList<>();
-		String sql = "select id,name,address,phone,status from Customer where status= 'A' ORDER BY id ASC ;";
+		String sql = "select id , name , address , phone , status from Customer where status = 'A' ORDER BY id ASC ;";
 		try (PreparedStatement pstm = Acceso.getConnection().prepareStatement(sql);
 				ResultSet rs = pstm.executeQuery();) {
 			while (rs.next()) {
 				clienteModel activo = new clienteModel();
 				activo.setId(rs.getInt("id"));
-				activo.setName(rs.getString("id"));
+				activo.setName(rs.getString("name"));
 				activo.setAddress(rs.getString("address"));
 				activo.setPhone(rs.getString("phone"));
 				activo.setStatus(rs.getString("status"));

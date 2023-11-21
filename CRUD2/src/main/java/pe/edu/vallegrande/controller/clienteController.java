@@ -45,7 +45,6 @@ public class clienteController extends HttpServlet {
 
 	private void mostrarEditar(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Editar");
 		int id_editar = Integer.parseInt(request.getParameter("id_editar"));
 		clienteModel editar = service.getByid(id_editar);
 		request.getSession().setAttribute("editar", editar);
@@ -56,27 +55,29 @@ public class clienteController extends HttpServlet {
 
 	private void listarInactivos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<clienteModel> Activos = new ArrayList<>();
-		Activos = service.getActive();
-		request.setAttribute("Activos", Activos);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Listar.jsp");
+		System.out.println("Exito en inactivos");
+		List<clienteModel> Inactivos = new ArrayList<>();
+		Inactivos = service.getInactive();
+		request.setAttribute("Inactivos", Inactivos);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Inactivo.jsp");
 		dispatcher.forward(request, response);
 
 	}
 
 	private void listarActivos(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<clienteModel> Inactivos = new ArrayList<>();
-		Inactivos = service.getInactive();
-		request.setAttribute("Inactivos", Inactivos);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Listar.jsp");
+		System.out.println("listado Activos");
+		List<clienteModel> Activos = new ArrayList<>();
+		Activos = service.getActive();
+		request.setAttribute("Activos", Activos);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Activo.jsp");
 		dispatcher.forward(request, response);
 
 	}
 
 	private void listarTodos(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		System.out.println("hola");
+		System.out.println("listado correcto");
 		List<clienteModel> listarTodos = new ArrayList<>();
 		listarTodos = service.getAll();
 		request.setAttribute("listarTodos", listarTodos);
@@ -118,7 +119,6 @@ public class clienteController extends HttpServlet {
 	}
 
 	private void editar(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		System.out.println("en editar esta mal");
 		clienteModel cliente = (clienteModel) request.getSession().getAttribute("editar");
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
