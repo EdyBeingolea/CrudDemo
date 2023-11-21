@@ -61,6 +61,8 @@
 								<th>Nombre</th>
 								<th>Direccion</th>
 								<th>Celular</th>
+								<th>Tipo de Documento</th>
+								<th>Docmuento</th>
 <!-- 								<th>Acciones</th> -->
 							</tr>
 						</thead>
@@ -70,6 +72,8 @@
 								<th>Nombre</th>
 								<th>Direccion</th>
 								<th>Celular</th>
+								<th>Tipo de Documento</th>
+								<th>Docmuento</th>
 							</tr>
 						</tfoot>
 
@@ -81,18 +85,8 @@
 									<td><c:out value="${cliente.name}" /></td>
 									<td><c:out value="${cliente.address}" /></td>
 									<td><c:out value="${cliente.phone}" /></td>
-<!-- 									<td class="d-flex justify-content-center"> -->
-
-<!-- 										<form name="eliminar" action="Eliminar" method="post"> -->
-<!-- 											<button type="submit" class="btn btn-primary">Eliminar</button> -->
-<%-- 											<input type="hidden" name="id_delete" value="${cliente.id}"> --%>
-<!-- 										</form> -->
-<!-- 										<form action="mostrarEditar" method="get"> -->
-<!-- 											<button type="submit" class="btn btn-primary">Editar</button> -->
-<%-- 											<input type="hidden" name="id_editar" value="${cliente.id}"> --%>
-<!-- 										</form> -->
-
-<!-- 									</td> -->
+									<td><c:out value="${cliente.document}" /></td>
+									<td><c:out value="${cliente.documentNumber}" /></td>
 								</tr>
 							</c:forEach>
 						</tbody>

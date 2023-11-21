@@ -61,6 +61,8 @@
 								<th>Nombre</th>
 								<th>Direccion</th>
 								<th>Celular</th>
+								<th>Tipo de Documento</th>
+								<th>Docmuento</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -70,6 +72,8 @@
 								<th>Nombre</th>
 								<th>Direccion</th>
 								<th>Celular</th>
+								<th>Tipo de Documento</th>
+								<th>Docmuento</th>
 							</tr>
 						</tfoot>
 
@@ -81,6 +85,8 @@
 									<td><c:out value="${activo.name}" /></td>
 									<td><c:out value="${activo.address}" /></td>
 									<td><c:out value="${activo.phone}" /></td>
+									<td><c:out value="${activo.document}" /></td>
+									<td><c:out value="${activo.documentNumber}" /></td>
 									<td class="d-flex justify-content-center">
 
 										<form name="eliminar" action="Eliminar" method="post">

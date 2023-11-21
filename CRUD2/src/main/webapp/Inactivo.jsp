@@ -33,12 +33,14 @@
 
 				<div class="dropdown">
 					<button class="btn btn-secondary dropdown-toggle" type="button"
-						data-bs-toggle="dropdown" aria-expanded="false">Estado
-					</button>
+						data-bs-toggle="dropdown" aria-expanded="false">Estado</button>
 					<ul class="dropdown-menu">
-						<li><a href="listarTodos"><button class="dropdown-item" type="submit" > Listar Todos</button></a></li>
-						<li><a href="listarActivos"><button class="dropdown-item" type="submit"> Activo</button></a></li>
-						<li><a href="listarInactivos"><button class="dropdown-item" type="button"> Inactivo</button></a></li>
+						<li><a href="listarTodos"><button class="dropdown-item"
+									type="submit">Listar Todos</button></a></li>
+						<li><a href="listarActivos"><button class="dropdown-item"
+									type="submit">Activo</button></a></li>
+						<li><a href="listarInactivos"><button
+									class="dropdown-item" type="button">Inactivo</button></a></li>
 					</ul>
 
 					<!--  Boton agregar -->
@@ -61,6 +63,8 @@
 								<th>Nombre</th>
 								<th>Direccion</th>
 								<th>Celular</th>
+								<th>Tipo de Documento</th>
+								<th>Docmuento</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -70,22 +74,26 @@
 								<th>Nombre</th>
 								<th>Direccion</th>
 								<th>Celular</th>
+								<th>Tipo de Documento</th>
+								<th>Docmuento</th>
 							</tr>
 						</tfoot>
 
 						<tbody>
-							<c:forEach var="activo" items="${Inactivos}">
+							<c:forEach var="inactivo" items="${Inactivos}">
 
 								<tr>
-									<td><c:out value="${activo.id}" /></td>
-									<td><c:out value="${activo.name}" /></td>
-									<td><c:out value="${activo.address}" /></td>
-									<td><c:out value="${activo.phone}" /></td>
+									<td><c:out value="${inactivo.id}" /></td>
+									<td><c:out value="${inactivo.name}" /></td>
+									<td><c:out value="${inactivo.address}" /></td>
+									<td><c:out value="${inactivo.phone}" /></td>
+									<td><c:out value="${inactivo.document}" /></td>
+									<td><c:out value="${inactivo.documentNumber}" /></td>
 									<td class="d-flex justify-content-center">
 
 										<form name="restaurar" action="Restaurar" method="post">
 											<button type="submit" class="btn btn-primary">Restaurar</button>
-											<input type="hidden" name="id_delete" value="${activo.id}">
+											<input type="hidden" name="id_delete" value="${inactivo.id}">
 										</form>
 									</td>
 								</tr>

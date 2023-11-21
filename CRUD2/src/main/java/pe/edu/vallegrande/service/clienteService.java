@@ -8,11 +8,11 @@ import java.util.List;
 import pe.edu.vallegrande.conexion.Acceso;
 import pe.edu.vallegrande.model.clienteModel;
 
-public class clienteService  {
+public class clienteService {
 
 	public List<clienteModel> getAll() {
 		List<clienteModel> getAll = new ArrayList<>();
-		String sql = "select id,name,address,phone,status from Customer ORDER BY id ASC ;";
+		String sql = "select id ,name ,address ,phone ,document ,documentNumber ,status from Customer ORDER BY id ASC ;";
 		try (PreparedStatement pstm = Acceso.getConnection().prepareStatement(sql);
 				ResultSet rs = pstm.executeQuery()) {
 			while (rs.next()) {
@@ -21,10 +21,11 @@ public class clienteService  {
 				cliente.setName(rs.getString("name"));
 				cliente.setAddress(rs.getString("address"));
 				cliente.setPhone(rs.getString("phone"));
+				cliente.setDocument(rs.getString("document"));
+				cliente.setDocumentNumber(rs.getString("documentNumber"));
 				cliente.setStatus(rs.getString("status"));
 				getAll.add(cliente);
 			}
-		
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -35,7 +36,7 @@ public class clienteService  {
 
 	public List<clienteModel> getActive() {
 		List<clienteModel> getActive = new ArrayList<>();
-		String sql = "select id , name , address , phone , status from Customer where status = 'A' ORDER BY id ASC ;";
+		String sql = "select id,name,address,phone,document,documentNumber,status from Customer where status = 'A' ORDER BY id ASC ;";
 		try (PreparedStatement pstm = Acceso.getConnection().prepareStatement(sql);
 				ResultSet rs = pstm.executeQuery();) {
 			while (rs.next()) {
@@ -44,10 +45,11 @@ public class clienteService  {
 				activo.setName(rs.getString("name"));
 				activo.setAddress(rs.getString("address"));
 				activo.setPhone(rs.getString("phone"));
+				activo.setDocument(rs.getString("document"));
+				activo.setDocumentNumber(rs.getString("documentNumber"));
 				activo.setStatus(rs.getString("status"));
 				getActive.add(activo);
 			}
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,10 +58,9 @@ public class clienteService  {
 		return getActive;
 	}
 
-	
 	public List<clienteModel> getInactive() {
 		List<clienteModel> getInactive = new ArrayList<>();
-		String sql = "select id,name,address,phone,status from Customer where status= 'I' ORDER BY id ASC ;";
+		String sql = "select id,name,address,phone,document,documentNumber,status from Customer where status= 'I' ORDER BY id ASC ;";
 		try (PreparedStatement pstm = Acceso.getConnection().prepareStatement(sql);
 				ResultSet rs = pstm.executeQuery();) {
 			while (rs.next()) {
@@ -68,10 +69,11 @@ public class clienteService  {
 				inactivos.setName(rs.getString("name"));
 				inactivos.setAddress(rs.getString("address"));
 				inactivos.setPhone(rs.getString("phone"));
+				inactivos.setDocument(rs.getString("document"));
+				inactivos.setDocumentNumber(rs.getString("documentNumber"));
 				inactivos.setStatus(rs.getString("status"));
 				getInactive.add(inactivos);
 			}
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,7 +83,6 @@ public class clienteService  {
 		return getInactive;
 	}
 
-	
 	public clienteModel getByid(int id) {
 		clienteModel cliente = null;
 		String sql = "SELECT * FROM Customer WHERE id = ?";
@@ -94,23 +95,26 @@ public class clienteService  {
 				cliente.setName(rs.getString("name"));
 				cliente.setAddress(rs.getString("address"));
 				cliente.setPhone(rs.getString("phone"));
+				cliente.setDocument(rs.getString("document"));
+				cliente.setDocumentNumber(rs.getString("documentNumber"));
 				cliente.setStatus(rs.getString("status"));
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println("error en  busacar clientes por su id : " + e.getMessage());
 		}
 		return cliente;
 	}
 
-	
 	public clienteModel insert(clienteModel bean) {
-		String sql = "INSERT INTO Customer (name, address, phone, status) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO Customer (name, address, phone, document, documentNumber, status) VALUES (?, ?, ?, ?, ?, ?)";
 		try (PreparedStatement pstm = Acceso.getConnection().prepareStatement(sql)) {
 			pstm.setString(1, bean.getName());
 			pstm.setString(2, bean.getAddress());
 			pstm.setString(3, bean.getPhone());
-			pstm.setString(4, bean.getStatus());
+			pstm.setString(4, bean.getDocument());
+			pstm.setString(5, bean.getDocumentNumber());
+			pstm.setString(6, bean.getStatus());
 			pstm.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("error en agegar nuevos clientes" + e.getMessage());
@@ -118,15 +122,16 @@ public class clienteService  {
 		return bean;
 	}
 
-	
 	public clienteModel update(clienteModel bean) {
-		String sql = "UPDATE Customer SET name = ?, address = ?, phone = ?, status = ? WHERE id = ?";
+		String sql = "UPDATE Customer SET name = ?, address = ?, phone = ?, document = ?, documentNumber = ?, status = ? WHERE id = ?";
 		try (PreparedStatement pstm = Acceso.getConnection().prepareStatement(sql)) {
 			pstm.setString(1, bean.getName());
 			pstm.setString(2, bean.getAddress());
 			pstm.setString(3, bean.getPhone());
-			pstm.setString(4, bean.getStatus());
-			pstm.setInt(5, bean.getId());
+			pstm.setString(4, bean.getDocument());
+			pstm.setString(5, bean.getDocumentNumber());
+			pstm.setString(6, bean.getStatus());
+			pstm.setInt(7, bean.getId());
 			pstm.executeUpdate();
 		} catch (Exception e) {
 			System.out.println("error en editar clientes" + e.getMessage());
@@ -134,23 +139,21 @@ public class clienteService  {
 		return bean;
 	}
 
-	
 	public void delete(Integer id) {
 		String sql = "UPDATE Customer SET status = 'I' WHERE id = ?";
 		try (PreparedStatement pstm = Acceso.getConnection().prepareStatement(sql)) {
 			pstm.setInt(1, id);
 			pstm.executeUpdate();
-			
+
 		} catch (Exception e) {
 			System.out.println("error en el elimanado logico el cliente no existe" + e.getMessage());
 		}
 
 	}
 
-	
 	public void restore(Integer id) {
 		String sql = "UPDATE Customer SET status = 'A' WHERE id = ?";
-		try (PreparedStatement pstm = Acceso.getConnection().prepareStatement(sql)){
+		try (PreparedStatement pstm = Acceso.getConnection().prepareStatement(sql)) {
 			pstm.setInt(1, id);
 			pstm.executeUpdate();
 		} catch (Exception e) {

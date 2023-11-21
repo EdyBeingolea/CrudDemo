@@ -123,6 +123,8 @@ public class clienteController extends HttpServlet {
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
+		String document = request.getParameter("document");
+		String documentNumber = request.getParameter("documentNumber");
 		String status = request.getParameter("status");
 		if (status == null || status.isEmpty()) {
 			status = "A";
@@ -132,6 +134,8 @@ public class clienteController extends HttpServlet {
 		cliente.setAddress(address);
 		cliente.setPhone(phone);
 		cliente.setStatus(status);
+		cliente.setDocument(document);
+		cliente.setDocumentNumber(documentNumber);
 		service.update(cliente);
 //		cliente = new clienteModel();
 		response.sendRedirect("listarTodos");
@@ -142,6 +146,8 @@ public class clienteController extends HttpServlet {
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
+		String document = request.getParameter("document");
+		String documentNumber = request.getParameter("documentNumber");
 		String status = request.getParameter("status");
 		if (status == null || status.isEmpty()) {
 			status = "A";
@@ -150,6 +156,8 @@ public class clienteController extends HttpServlet {
 		cliente.setName(name);
 		cliente.setAddress(address);
 		cliente.setPhone(phone);
+		cliente.setDocument(document);
+		cliente.setDocumentNumber(documentNumber);
 		cliente.setStatus(status);
 		service.insert(cliente);
 		response.sendRedirect("listarTodos");

@@ -15,7 +15,8 @@ public class clienteModel {
 	private String name;
 	private String address;
 	private String phone;
+	private String document;
+	private String documentNumber;
 	private String status;
-
-	
+		
 }
